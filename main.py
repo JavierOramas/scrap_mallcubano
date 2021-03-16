@@ -17,7 +17,6 @@ def dump_data(data:dict):
         writer = csv.DictWriter(csvfile, fieldnames=csv_cols)
         writer.writeheader()
         for d in data:
-            print(d)
             writer.writerow(d)
     # except IOError:
     #     print("I/O error")
@@ -37,19 +36,27 @@ final_data = []
 for i in links:
     response = requests.get(i['href'], data=payload, headers=headers, verify=False)
     soup = BeautifulSoup(response.text, 'html.parser')
+    page_next = soup.find('a', {'class':'next i-next'}) 
+    count = 1
+    while(page_next != None):
+        count += 1
+        response = requests.get(page_next['href'], data=payload, headers=headers, verify=False)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        page_next = soup.find('a', {'class':'next i-next'}) 
+        print(f"\n\npage {count}\n\n")
+        items = soup.find_all('a', {"class":"product-image"})
+        cat = cleanhtml(str(soup.find('title')))
+        for j in items:
+            data = {}
+            item_response = requests.get(j['href'], data=payload, headers=headers, verify=False)
+            soup = BeautifulSoup(item_response.text, 'html.parser')    
 
-    items = soup.find_all('a', {"class":"product-image"})
-    cat = cleanhtml(str(soup.find('title')))
-    for j in items:
-        data = {}
-        item_response = requests.get(j['href'], data=payload, headers=headers, verify=False)
-        soup = BeautifulSoup(item_response.text, 'html.parser')    
+            data['name'] = cleanhtml(str(soup.find('div', {'class':'product-name'})))
+            data['cattegory'] = cat
+            data['description'] = cleanhtml(str(soup.find('div', {'class':'short-description'})))
+            data['price'] = cleanhtml(str(soup.find('span',{'class':'price'})))
+            data['extras'] = cleanhtml(str(soup.findAll('div', {'class':'box-collateral'})))
+            final_data.append(data)
+    
 
-        data['name'] = cleanhtml(str(soup.find('div', {'class':'product-name'})))
-        data['cattegory'] = cat
-        data['description'] = cleanhtml(str(soup.find('div', {'class':'short-description'})))
-        data['price'] = cleanhtml(str(soup.find('span',{'class':'price'})))
-        data['extras'] = cleanhtml(str(soup.findAll('div', {'class':'box-collateral'})))
-        final_data.append(data)
-        
 dump_data(final_data)
