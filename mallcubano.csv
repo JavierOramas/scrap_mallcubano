@@ -1,0 +1,116 @@
+name,description,price,extras,cattegory
+"
+Ernest Hemingway in the Romano Archipielago. Enrique Cirules
+ 
+","
+Details:Editorial: Ediciones Cubanas	
+ISBN: 978-959-7230-72-4
+Año de edición: 2015	
+Formato: 21 x 14 cms	     
+Págs: 97
+Peso: 150 g
+",$4.00,"[
+        In this book Enrique Cirules ( a studios of ernest Hemingway's presence in our country) bring us a group of details from the writer's life that remains unknown till today. Amoung others details, the text show us the facination for Havana since 1929, when he came to Cuban capital for the second time.    , 
+
+
+
+
+
+Autor
+Enrique Cirules
+
+
+
+, 
+
+
+Add Your Tags:
+
+
+
+
+
+Add Tags
+
+
+
+
+Use spaces to separate tags. Use single quotes (') for phrases.
+
+    //<![CDATA[
+        var addTagFormJs = new VarienForm('addTagForm');
+        function submitTagForm(){
+            if(addTagFormJs.validator.validate()) {
+                addTagFormJs.form.submit();
+            }
+        }
+    //]]>
+    
+, 
+
+Write Your Own Review
+
+
+You're reviewing: Ernest Hemingway in the Romano Archipielago. Enrique Cirules
+
+
+*Nickname
+
+
+
+
+
+*Summary of Your Review
+
+
+
+
+
+*Review
+
+
+
+
+
+
+
+Submit Review
+
+
+
+    //<![CDATA[
+        var dataForm = new VarienForm('review-form');
+        Validation.addAllThese(
+        [
+               ['validate-rating', 'Please select one of each of the ratings above', function(v) {
+                    var trs = $('product-review-table').select('tr');
+                    var inputs;
+                    var error = 1;
+    
+                    for( var j=0; j < trs.length; j++ ) {
+                        var tr = trs[j];
+                        if( j > 0 ) {
+                            inputs = tr.select('input');
+    
+                            for( i in inputs ) {
+                                if( inputs[i].checked == true ) {
+                                    error = 0;
+                                }
+                            }
+    
+                            if( error == 1 ) {
+                                return false;
+                            } else {
+                                error = 1;
+                            }
+                        }
+                    }
+                    return true;
+                }]
+        ]
+        );
+    //]]>
+    
+
+
+]",books
